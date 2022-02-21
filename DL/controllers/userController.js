@@ -1,11 +1,12 @@
 require("../db").connect();
-
+// TODO: add populate +find and delete by id
 const { User } = require("../models/indexModels");
 
 const createUser = async ({
   firstName,
   lastName,
   email,
+  password,
   isManager,
   registerDate,
   createDate,
@@ -21,6 +22,7 @@ const createUser = async ({
     firstName,
     lastName,
     email,
+    password,
     isManager,
     registerDate,
     createDate,
@@ -33,25 +35,28 @@ const createUser = async ({
     },
   });
 };
-const findOneUser = async (findBy) => {
-  return await User.findOne(findBy);
+const findOneUser = async (filter) => {
+  return await User.findOne(filter);
+};
+const findUserByID = async (id) => {
+  return await User.findById(id);
+};
+const findAllUser = async (filter) => {
+  return await User.find(filter);
 };
 
-const findAllUser = async (findBy) => {
-  return await User.find(findBy);
+const updateUser = async (filter, newValue) => {
+  return User.findOneAndUpdate(filter, newValue, { new: true });
 };
 
-const updateUser = async (findBy, newValue) => {
-  return User.findOneAndUpdate(findBy, newValue, { new: true });
-};
-
-const deleteUser = async (findBy) => {
-  return User.findOneAndDelete(findBy);
+const deleteUser = async (filter) => {
+  return User.findOneAndDelete(filter);
 };
 
 module.exports = {
   createUser,
   findOneUser,
+  findUserByID,
   findAllUser,
   updateUser,
   deleteUser,
@@ -61,9 +66,10 @@ module.exports = {
 // tests:
 
 const temp1 = {
-  firstName: "ab2",
+  firstName: "ab5",
   lastName: "cd2",
   email: "emal2",
+  password: "pas1234",
   isManager: true,
   //   registerDate: { type: Date, default: new Date() },
   //   createDate: { type: Date, default: new Date() },
@@ -91,7 +97,7 @@ const temp2 = {
     //   purchasedBalance: { type: Number },
   },
 };
-const temp3 = { firstName: "ab2" };
+const temp3 = { firstName: "ab5" };
 const temp4 = { firstName: "ab" };
 const temp5 = { firstName: "abUpdate" };
 async function test1() {
@@ -102,14 +108,13 @@ async function test1() {
 // test1();
 
 async function test2() {
-  //   const ans2 = await findOneUser(temp3);
+  const ans2 = await findOneUser(temp3);
   //   const ans3 = await findAllUser(temp4);
-  //   console.log({ ans2 }, { ans3 });
-
+  console.log({ ans2 });
+  // console.log({ ans2 }, { ans3 });
   //   const ans4 = await updateUser(temp3, temp5);
-  const ans5 = await deleteUser(temp5);
-  console.log({ ans5 });
-  //   const ans3 = await findOneUser("name", "aaa");
+  //   const ans5 = await deleteUser(temp5);
+  //   console.log({ ans5 });
   //   console.log({ ans2 });
   //   return await findOneUser("name", "aaa");
 }
