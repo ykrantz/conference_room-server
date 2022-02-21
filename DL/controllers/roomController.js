@@ -4,7 +4,7 @@ require("../db").connect();
 
 const { Room } = require("../models/indexModels");
 
-const createRoom = async (name, maxOfPeople, hourCost) => {
+const createRoom = async ({ name, maxOfPeople, hourCost }) => {
   return await Room.create({ name, maxOfPeople, hourCost });
 };
 const findOneRoom = async (filter) => {
