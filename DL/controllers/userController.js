@@ -34,14 +34,14 @@ const create = async ({
     },
   });
 };
-const readOne = async (filter) => {
-  return await user.findOne(filter);
+const readOne = async (filter, proj) => {
+  return await user.findOne(filter, proj);
 };
-const readByID = async (id) => {
-  return await user.findById(id);
+const readByID = async (id, proj) => {
+  return await user.findById(id, proj);
 };
-const readAll = async (filter) => {
-  return await user.find(filter);
+const readAll = async (filter, proj) => {
+  return await user.find(filter, proj);
 };
 
 const update = async (filter, newValue) => {

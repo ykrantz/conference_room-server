@@ -2,18 +2,18 @@ require("../db").connect();
 
 const { room } = require("../models/indexModels");
 
-const create = async ({ name, maxOfPeople, hourCost }) => {
-  return await room.create({ name, maxOfPeople, hourCost });
+const create = async ({ name, maxOfPeople, hourlyCost }) => {
+  return await room.create({ name, maxOfPeople, hourlyCost });
 };
-const readOne = async (filter) => {
-  return await room.findOne(filter);
+const readOne = async (filter, proj) => {
+  return await room.findOne(filter, proj);
 };
-const readByID = async (id) => {
-  return await room.findById(id);
+const readByID = async (id, proj) => {
+  return await room.findById(id, proj);
 };
 
-const readAll = async (filter) => {
-  return await room.find(filter);
+const readAll = async (filter, proj) => {
+  return await room.find(filter, proj);
 };
 
 const update = async (filter, newValue) => {
@@ -36,13 +36,13 @@ module.exports = {
 //
 // tests:
 
-// const temp1 = { name: "aaa" };
-// const temp2 = { name: "ccc" };
-// async function test1() {
-//   return await create("aaa", 3, 4);
-// }
+const temp1 = { name: "aaa2", maxOfPeople: 4, hourlyCost: 3 };
+// const temp2 = { name: "bb2", maxOfPeople: 4, hourlyCost: 3 };
+async function test1() {
+  return console.log(await create(temp1));
+}
 
-// // test1();
+test1();
 
 // async function test2() {
 //   //   await require("../db").connect();
