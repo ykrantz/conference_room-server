@@ -11,7 +11,7 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  hourCost: {
+  hourlyCost: {
     type: Number,
     required: true,
   },
@@ -19,7 +19,7 @@ const roomSchema = new mongoose.Schema({
 
 // const roomModel = mongoose.model("room", roomSchema);
 // module.exports = roomModel;
-module.exports = mongoose.model("Room", roomSchema);
+module.exports = mongoose.model("room", roomSchema);
 
 // const test = {
 //   name: "regards to Yonatan the king",

@@ -2,19 +2,19 @@ const mongoose = require("mongoose");
 
 const bookingSchema = new mongoose.Schema({
   meetingDate: { type: Date },
-  startTime: { type: Date },
-  endTime: { type: Date },
-  room: { type: mongoose.SchemaTypes.ObjectId, ref: "Room" },
-  user: { type: mongoose.SchemaTypes.ObjectId, ref: "User" },
-  logDate: { type: Date },
-  payMethod: { type: mongoose.SchemaTypes.ObjectId, ref: "PayMethod" },
-  calenderLink: { type: String },
-  purchaseCost: { type: Number },
-  payedBy: {
+  startHour: { type: Date, required: true },
+  endHour: { type: Date, required: true },
+  roomId: { type: mongoose.SchemaTypes.ObjectId, ref: "room" },
+  userId: { type: mongoose.SchemaTypes.ObjectId, ref: "user" },
+  bookDate: { type: Date, default: Date.now },
+  urlCalender: String,
+  bookCost: { type: Number },
+  // payMethod: { type: mongoose.SchemaTypes.ObjectId, ref: "payMethod" },
+  creditCoins: {
     monthly: { type: Number },
     credit: { type: Number },
     purchase: { type: Number },
   },
 });
 
-module.exports = mongoose.model("Booking", bookingSchema);
+module.exports = mongoose.model("booking", bookingSchema);

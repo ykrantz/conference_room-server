@@ -1,5 +1,5 @@
-const Room = require("./room");
-const Booking = require("./booking");
-const User = require("./user");
+const room = require("./room");
+const booking = require("./booking");
+const user = require("./user");
 
-module.exports = { Room, Booking, User };
+module.exports = { room, booking, user };

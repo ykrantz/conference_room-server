@@ -1,68 +1,66 @@
 require("../db").connect();
 
-// TODO: add populate +find and delete by id
+const { room } = require("../models/indexModels");
 
-const { Room } = require("../models/indexModels");
-
-const createRoom = async ({ name, maxOfPeople, hourCost }) => {
-  return await Room.create({ name, maxOfPeople, hourCost });
+const create = async ({ name, maxOfPeople, hourCost }) => {
+  return await room.create({ name, maxOfPeople, hourCost });
 };
-const findOneRoom = async (filter) => {
-  return await Room.findOne(filter);
+const readOne = async (filter) => {
+  return await room.findOne(filter);
 };
-const findRoomByID = async (id) => {
-  return await Room.findById(id);
+const readByID = async (id) => {
+  return await room.findById(id);
 };
 
-const findAllRoom = async (filter) => {
-  return await Room.find(filter);
+const readAll = async (filter) => {
+  return await room.find(filter);
 };
 
-const updateRoom = async (filter, newValue) => {
-  return Room.findOneAndUpdate(filter, newValue, { new: true });
+const update = async (filter, newValue) => {
+  return room.findOneAndUpdate(filter, newValue, { new: true });
 };
 
-const deleteRoom = async (filter) => {
-  return Room.findOneAndDelete(filter);
+const deleteOne = async (filter) => {
+  return room.findOneAndDelete(filter);
 };
 
 module.exports = {
-  createRoom,
-  findOneRoom,
-  findRoomByID,
-  findAllRoom,
-  updateRoom,
-  deleteRoom,
+  create,
+  readOne,
+  readByID,
+  readAll,
+  update,
+  deleteOne,
 };
 
 //
 // tests:
 
-const temp1 = { name: "aaa" };
-const temp2 = { name: "ccc" };
-async function test1() {
-  return await createRoom("aaa", 3, 4);
-}
+// const temp1 = { name: "aaa" };
+// const temp2 = { name: "ccc" };
+// async function test1() {
+//   return await create("aaa", 3, 4);
+// }
 
-// test1();
+// // test1();
 
-async function test2() {
-  //   await require("../db").connect();
-  //   const ans = await Room.findOne({ name: "aaa" });
-  //   console.log({ ans });
-  //   const ans2 = await findOneRoom({ name: "aaa" });
-  //   const ans3 = await findAllRoom({ name: "aaa" });
-  //   console.log({ ans3 });
+// async function test2() {
+//   //   await require("../db").connect();
+//   //   const ans = await Room.findOne({ name: "aaa" });
+//   //   console.log({ ans });
+//   //   const ans2 = await findOneRoom({ name: "aaa" });
+//   //   const ans3 = await findAllRoom({ name: "aaa" });
+//   //   console.log({ ans3 });
 
-  //   const ans4 = await updateRoom(temp1, temp2);
-  const ans5 = await deleteRoom(temp2);
-  console.log({ ans5 });
-  //   const ans3 = await findOneRoom("name", "aaa");
-  //   console.log({ ans2 });
-  //   return await findOneRoom("name", "aaa");
-}
+//   //   const ans4 = await updateRoom(temp1, temp2);
+//   const ans5 = await deleteOne(temp2);
+//   console.log({ ans5 });
+//   //   const ans3 = await findOneRoom("name", "aaa");
+//   //   console.log({ ans2 });
+//   //   return await findOneRoom("name", "aaa");
+// }
 
-console.log("$$$");
-// console.log(test1());
-// test2();
-// console.log(test2());
+// console.log("$$$");
+// // console.log(test1());
+// // test2();
+// // console.log(test2());
